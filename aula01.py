@@ -1,6 +1,7 @@
+import img
+img.cArt().ascart()
 print("Exercicios do Dorivas")
-escolha = input("Escolha de atividades de 1 até 10 ")
-
+escolha = input("Escolha de atividades de 1 até 9 ou desafio ")
 match escolha:
     case "1":
         num = float(input("Entre com o numero 1: "))
@@ -13,9 +14,7 @@ match escolha:
         ano = 2025
         ano_nasc = int(input("Qual seu ano de nascimento? "))
         nome = input("Qual o seu nome? ")
-
         idade = ano - ano_nasc
-
         print(f"Olá {nome}, voce tem {idade} anos")
     case "3":
         num_impar = int(input("Qual é o número? "))
@@ -79,23 +78,6 @@ match escolha:
         print(d)
     case "Desafio":
         print("Teste")
-    case "10":
-        print("Teste")
     case _:
         print("Número inválido")
-
-
-#EXERCICIO 1
-
-
-#EXERCICIO 2
-
-
-#EXERCICIO 3
-
-
-#EXERCICIO 4
-
-
-#EXERCICIO 5
 

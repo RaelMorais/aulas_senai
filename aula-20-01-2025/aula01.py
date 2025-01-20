@@ -81,3 +81,4 @@ match escolha:
     case _:
         print("Número inválido")
 
+print("teste de ignore")

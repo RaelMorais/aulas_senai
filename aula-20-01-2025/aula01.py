@@ -76,8 +76,6 @@ match escolha:
             
             '''
         print(d)
-    case "Desafio":
-        print("Teste")
     case _:
         print("Número inválido")
 

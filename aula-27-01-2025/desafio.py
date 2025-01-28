@@ -297,14 +297,14 @@ class Conta:
     def depositar(self, valor):
         if valor > 0:
             self.saldo += valor
-            print(f"Depósito de R${valor:.2f} realizado com sucesso.")
+            print(f"Depósito de R${valor} na conta {self.cliente.numConta}.")
         else:
             print("Valor de depósito inválido.")
 
     def sacar(self, valor):
         if valor <= self.saldo:
             self.saldo -= valor
-            print(f"Saque de R${valor:.2f} realizado com sucesso.")
+            print(f"Saque de R${valor} realizado com sucesso.")
         else:
             print("Saldo insuficiente.")
 
@@ -312,12 +312,12 @@ class Conta:
         if valor <= self.saldo:
             self.saldo -= valor
             conta_destino.saldo += valor
-            print(f"Transferência de R${valor:.2f} realizada com sucesso.")
+            print(f"Transferência de R${valor} realizada com sucesso para a conta de {self.cliente.nome}.")
         else:
-            print("Saldo insuficiente.")
+            print("saldo insuficiente.")
 
     def consultar_saldo(self):
-        return f"Saldo atual: R${self.saldo:.2f}"
+        return f"SALDO ATUAL DE {self.cliente.nome}: {self.saldo}"
 
 class Banco:
     def __init__(self):
@@ -334,7 +334,9 @@ class Banco:
         if cliente:
             nova_conta = Conta(cliente, saldo_inicial)
             self.contas.append(nova_conta)
-            print(f"Conta aberta para o cliente {cliente.nome}. Número da conta: {cliente.numConta}.")
+            print("#"*20)
+            print(f"Conta aberta para o cliente {cliente.nome} \nNúmero da conta: {cliente.numConta}.")
+            print("#"*20)
             return nova_conta
         else:
             print(f"Cliente com CPF {cpf} não encontrado.")
@@ -347,14 +349,24 @@ class Banco:
         return None
 
 banco = Banco()
-banco.cadastrar_cliente("João Alguma coisa", "123425678910", 1000)
-banco.cadastrar_cliente("Mariazinha sei la oq", "12345678911", 200)
-conta_joao = banco.abrir_conta("123425678910", 500)
-conta_maria = banco.abrir_conta("123425678911", 1000)
-conta_joao.depositar(200)
-conta_joao.sacar(100)
-conta_joao.transferir(300, conta_maria)
-print(conta_joao.consultar_saldo())
-print(conta_maria.consultar_saldo())
 
+banco.cadastrar_cliente("João Alguma coisa", "12342567810", 10000)
+banco.cadastrar_cliente("Mariazinha sei la oq", "12456781189", 200)
+banco.cadastrar_cliente("Kauanzera", "34512387632", 12)
 
+conta1 = banco.abrir_conta("12342567810", 1000)
+conta2 = banco.abrir_conta("12456781189", 1000)
+conta3 = banco.abrir_conta("34512387632", 100)
+
+conta1.depositar(200)
+conta1.sacar(100)
+
+conta1.transferir(100, conta2)
+conta2.transferir(200, conta3)
+
+print(conta1.consultar_saldo())
+print(conta2.consultar_saldo())
+print(conta3.consultar_saldo())
+
+#DESAFIO 12
+        

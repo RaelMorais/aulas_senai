@@ -369,4 +369,10 @@ print(conta2.consultar_saldo())
 print(conta3.consultar_saldo())
 
 #DESAFIO 12
-        
+#Crie uma classe chamada “LojaVirtual” que represente uma plataforma de vendas
+#online. Essa classe deve ter funcionalidades para cadastrar produtos, gerar carrinho de
+#compras, aplicar descontos e calcular o valor total da compra.
+# 
+#         
+
+

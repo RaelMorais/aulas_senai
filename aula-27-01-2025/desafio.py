@@ -281,3 +281,80 @@ livro1.emprestar()
 livro1.devolver()
 livro1.disponibilidade()
 
+#Desafio 11
+class Cliente:
+    def __init__(self, nome, cpf, numConta):
+        self.nome = nome
+        self.cpf = cpf
+        self.numConta = numConta
+
+class Conta:
+    def __init__(self, cliente, saldo_inicial=0):
+        self.cliente = cliente
+        self.saldo = saldo_inicial
+        self.numConta = cliente.numConta
+
+    def depositar(self, valor):
+        if valor > 0:
+            self.saldo += valor
+            print(f"Depósito de R${valor:.2f} realizado com sucesso.")
+        else:
+            print("Valor de depósito inválido.")
+
+    def sacar(self, valor):
+        if valor <= self.saldo:
+            self.saldo -= valor
+            print(f"Saque de R${valor:.2f} realizado com sucesso.")
+        else:
+            print("Saldo insuficiente.")
+
+    def transferir(self, valor, conta_destino):
+        if valor <= self.saldo:
+            self.saldo -= valor
+            conta_destino.saldo += valor
+            print(f"Transferência de R${valor:.2f} realizada com sucesso.")
+        else:
+            print("Saldo insuficiente.")
+
+    def consultar_saldo(self):
+        return f"Saldo atual: R${self.saldo:.2f}"
+
+class Banco:
+    def __init__(self):
+        self.clientes = []
+        self.contas = []
+
+    def cadastrar_cliente(self, nome, cpf, numConta):
+        novo_cliente = Cliente(nome, cpf, numConta)
+        self.clientes.append(novo_cliente)
+        print(f"Cliente {nome} cadastrado com sucesso.")
+
+    def abrir_conta(self, cpf, saldo_inicial=0):
+        cliente = self.buscar_cliente(cpf)
+        if cliente:
+            nova_conta = Conta(cliente, saldo_inicial)
+            self.contas.append(nova_conta)
+            print(f"Conta aberta para o cliente {cliente.nome}. Número da conta: {cliente.numConta}.")
+            return nova_conta
+        else:
+            print(f"Cliente com CPF {cpf} não encontrado.")
+            return None
+
+    def buscar_cliente(self, cpf):
+        for cliente in self.clientes:
+            if cliente.cpf == cpf:
+                return cliente
+        return None
+
+banco = Banco()
+banco.cadastrar_cliente("João Alguma coisa", "123425678910", 1000)
+banco.cadastrar_cliente("Mariazinha sei la oq", "12345678911", 200)
+conta_joao = banco.abrir_conta("123425678910", 500)
+conta_maria = banco.abrir_conta("123425678911", 1000)
+conta_joao.depositar(200)
+conta_joao.sacar(100)
+conta_joao.transferir(300, conta_maria)
+print(conta_joao.consultar_saldo())
+print(conta_maria.consultar_saldo())
+
+

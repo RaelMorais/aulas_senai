@@ -19,7 +19,7 @@ class MaquinaDeVendas:
 
     def listar_produtos(self):
         if not self.produtos_cadastrados:
-            return "Nenhum produto disponível."
+            return "Sem estoque"
         return "\n".join(str(produto) for produto in self.produtos_cadastrados)# Usei o chatgpt
 
     def selecionar_produto(self, nome_produto):
@@ -27,13 +27,13 @@ class MaquinaDeVendas:
             if produto.nome == nome_produto:
                 self.carrinho.append(produto)
                 return f"{produto.nome} adicionado ao carrinho."
-        return "Produto não encontrado."
+        return "Produto não encontrado"
 
     def inserir_dinheiro(self, valor):
         if valor <= 0:
-            return "O valor inserido precisa ser maior que zero."
+            return "Valor não compativel"
         self.saldo += valor
-        return f"R$ {valor:.2f} inseridos. Saldo atual: R$ {self.saldo:.2f}"
+        return f">>>R$ {valor:.2f} inseridos.\n>>>Saldo atual: R$ {self.saldo:.2f}"
 
     def calcular_total_carrinho(self):
         return sum(produto.preco for produto in self.carrinho)
@@ -41,7 +41,7 @@ class MaquinaDeVendas:
     def calcular_troco(self):
         total = self.calcular_total_carrinho()
         if self.saldo < total:
-            return f"Saldo insuficiente. Faltam R$ {total - self.saldo:.2f}."
+            return f"Saldo insuficiente.\nFaltam R$ {total - self.saldo:.2f}."
         troco = self.saldo - total
         self.saldo = 0  
         self.carrinho.clear()  

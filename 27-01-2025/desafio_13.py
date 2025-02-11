@@ -43,21 +43,11 @@ class Agenda:
             for nome, (ddd, numero) in self.contatos.items():
                 print(f"{nome}: ({ddd}) {numero}")
 
-# Criando a agenda
+            
 agenda = Agenda()
-
-# Adicionando contatos
 agenda.adicionar_numero("Alice", "11", "123456789")
 agenda.adicionar_numero("Bob", "21", "987654321")
-
-# Exibindo contatos
 agenda.exibir_numeros()
-
-# Editando um contato
 agenda.editar_numero("Alice", novoNumero="111223344")
-
-# Buscando um contato
 agenda.buscaContato("Alice", "111223344")
-
-# Removendo um contato
 agenda.remover_numero("Bob")

@@ -7,3 +7,5 @@ Aula 02 - Conceito de orientação a objeto usando Python. 21/01
 Aula 03 - Desafios em sala de aula. 27/01
 
 Aula 04 - Aula sobre documentação. 28/01 
+
+Aula 05 - Pesquisa sobre modelo MTV/MVC - Django
